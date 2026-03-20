@@ -1,0 +1,18 @@
+/* src/pages/inventory/Devices.css */
+.devices-container {
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+/* Table styles overrides if needed */
+.devices-container table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.devices-container th {
+    background-color: #f9fafb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
