@@ -82,7 +82,7 @@ npx openapi-typescript-fetch openapi.yaml -o src/api/client.ts
   - Notifications (通知)
   　　- api/notificationsConf/defaultからGETし取得できる以下の情報を表示してください。設定するAccountをリストで設定できるようにしてください。
       - 以下のデフォルト値を内部的に持ってください。GETして情報が無い場合、この値を表示して、Create(作成)ボタンを表示してください。Create(作成)ボタンを押すとapi/notificationsConf/defaultにPUTしてください。api/notificationsConf/defaultからGETして情報がある場合は、取得した値を表示して、Update(更新)ボタンを表示してください。Update(更新)ボタンを押すとapi/notificationsConf/defaultにPUTしてください。
-  ```
+  ```json
       "Device connection": {
         "warningThreshold": null,
         "criticalThreshold": null,
@@ -236,143 +236,266 @@ npx openapi-typescript-fetch openapi.yaml -o src/api/client.ts
   ```
   - Devices (デバイス)
     - api/devicesからGETし取得できる以下の情報を表示してください。以下はサンプルです。また、検索フィールド・検索ボタンを具備してください。
-```
+```json
 [
   {
-    "interfaces": [
-      {
-        "IPv6": "IPv6",
-        "PublicIP": "PublicIP",
-        "PublicPort": "PublicPort",
-        "NatType": "NatType",
-        "useStun": true,
-        "useFixedPublicPort": false,
-        "monitorInternet": true,
-        "internetAccess": "yes",
-        "linkStatus": "up",
-        "IPv4": "IPv4",
-        "type": "WAN",
-        "gateway": "gateway",
-        "metric": 0,
-        "mtu": 1500,
-        "MAC": "MAC",
-        "dhcp": "no",
-        "routing": "OSPF",
-        "IPv6Mask": "64",
-        "isAssigned": true,
-        "driver": "driver",
-        "IPv4Mask": "24",
-        "name": "name",
-        "devId": "devId",
-        "_id": "_id",
-        "pathlabels": "path labels list"
+    "org": "69bdc97a392c2c0013a4e17a",
+    "description": "",
+    "deviceToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWNoaW5lX2lkIjoiNzRlN2JjYmMtMjVkYS0xMWYxLWI4MDktNTI1NDAwZWM5MTVhIiwibWFjaGluZV9uYW1lIjoiZmxleGl3YW4tcm91dGVyIiwiaWF0IjoxNzc0MTczNTgwfQ.sHNVi82aPG2cG
+NQbL1TvE4nb0zZ-bkOAaMK5iIJR2jM",
+    "machineId": "74e7bcbc-25da-11f1-b809-525400ec915a",
+    "site": "",
+    "hostname": "flexiwan-router",
+    "serial": "Not Specified",
+    "name": "",
+    "_id": "69bfbd8c0727a00013523dc3",
+    "isApproved": false,
+    "fromToken": "token",
+    "account": "69bdbd62392c2c0013a4dbfe",
+    "ipList": "127.0.1.1",
+    "policies": {
+      "multilink": {
+        "policy": null,
+        "status": "",
+        "requestTime": null
       },
-      {
-        "IPv6": "IPv6",
-        "PublicIP": "PublicIP",
-        "PublicPort": "PublicPort",
-        "NatType": "NatType",
-        "useStun": true,
-        "useFixedPublicPort": false,
-        "monitorInternet": true,
-        "internetAccess": "no",
-        "linkStatus": "down",
-        "IPv4": "IPv4",
-        "type": "WAN",
-        "gateway": "gateway",
-        "metric": 0,
-        "mtu": 1500,
-        "MAC": "MAC",
-        "dhcp": "no",
-        "routing": "OSPF",
-        "IPv6Mask": "64",
-        "isAssigned": true,
-        "driver": "driver",
-        "IPv4Mask": "24",
-        "name": "name",
-        "devId": "devId",
-        "_id": "_id",
-        "pathlabels": "path labels list"
+      "firewall": {
+        "policy": null,
+        "status": "",
+        "requestTime": null
+      },
+      "qos": {
+        "policy": null,
+        "status": "",
+        "requestTime": null
       }
-    ],
-    "org": "org",
-    "isConnected": true,
+    },
+    "applications": [],
+    "labels": [],
     "upgradeSchedule": {
       "jobQueued": true,
-      "_id": "_id",
-      "time": "2019-12-19T12:10:01.667Z"
+      "_id": "69bfbd8c0727a00013523dc8",
+      "time": null
     },
-    "description": "description",
-    "deviceStatus": "deviceStatus",
-    "deviceToken": "deviceToken",
-    "labels": [
-      "labels",
-      "labels"
-    ],
-    "machineId": "machineId",
-    "site": "site",
-    "hostname": "host01",
-    "versions": {
-      "agent": "agent",
-      "router": "router",
-      "device": "device",
-      "vpp": "vpp",
-      "frr": "frr"
+    "sync": {
+      "state": "syncing",
+      "hash": "7db638b70ad1f04c700a662d52d6f48eafe3c4ca",
+      "trials": 0,
+      "autoSync": "on"
     },
-    "name": "name",
-    "_id": "_id",
-    "isApproved": true,
-    "applications": [
-      {
-        "app": "app",
-        "status": "status"
-      }
-    ],
-    "staticroutes": [
-      {
-        "id": 1,
-        "destination": "20.20.0.0",
-        "gateway": "20.20.0.1",
-        "interface": "eth0"
-      },
-      {
-        "id": 2,
-        "destination": "10.10.0.0",
-        "gateway": "10.10.0.1",
-        "interface": "eth1"
-      }
-    ],
-    "deviceSpecificRulesEnabled": true,
-    "firewallRules": [
-      {
-        "description": "description",
-        "direction": "outbound",
-        "enabled": true,
-        "action": "allow"
-      },
-      {
-        "description": "description",
-        "direction": "inbound",
-        "enabled": false,
-        "action": "deny"
-      }
-    ],
-    "fromToken": "fromToken",
-    "account": "account",
-    "ipList": "ipList",
-    "dhcp": "dhcp list",
+    "ospf": {
+      "helloInterval": 10,
+      "deadInterval": 40,
+      "redistributeBgp": true,
+      "custom": ""
+    },
     "coords": [
-      40.4,
-      5.7
+      34.7086,
+      135.5496
     ],
-    "sync": "device sync status",
-    "routingFilters": [
-      "routingFilter"
-    ]
+    "bgp": {
+      "enable": false,
+      "localASN": "",
+      "keepaliveInterval": "30",
+      "holdInterval": "90",
+      "redistributeOspf": true,
+      "custom": "",
+      "neighbors": []
+    },
+    "routingFilters": [],
+    "cpuInfo": {
+      "hwCores": 2,
+      "grubCores": 3,
+      "vppCores": 1,
+      "configuredVppCores": 1,
+      "powerSaving": false
+    },
+    "distro": {
+      "version": "20.04",
+      "codename": "focal"
+    },
+    "advancedRouting": {
+      "custom": ""
+    },
+    "isConnected": false,
+    "state": "pending",
+    "orgInfo": {
+      "vxlanPort": "4789"
+    },
+    "versions": {
+      "agent": "6.4.32",
+      "router": "02.09.16",
+      "device": "6.4.32"
+    },
+    "interfaces": [
+      {
+        "IPv6": "",
+        "PublicIP": "133.206.50.224",
+        "PublicPort": "31619",
+        "NatType": "Full Cone",
+        "useStun": true,
+        "useFixedPublicPort": false,
+        "internetAccess": "",
+        "monitorInternet": true,
+        "linkStatus": "",
+        "gateway": "192.168.122.1",
+        "metric": "0",
+        "mtu": 1500,
+        "dhcp": "no",
+        "IPv4": "192.168.122.131",
+        "type": "WAN",
+        "MAC": "52:54:00:ec:91:5a",
+        "routing": "NONE",
+        "IPv6Mask": "",
+        "isAssigned": false,
+        "driver": "virtio_net",
+        "IPv4Mask": "24",
+        "name": "eth0",
+        "devId": "pci:0000:01:00.00",
+        "parentDevId": "",
+        "vlanTag": "",
+        "locked": true,
+        "_id": "69bfbd8c0727a00013523dc4",
+        "pathlabels": [],
+        "deviceType": "dpdk",
+        "configuration": {},
+        "deviceParams": {},
+        "qosPolicy": null,
+        "bandwidthMbps": {
+          "tx": 100,
+          "rx": 100
+        },
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dnsDomains": [],
+        "useDhcpDnsServers": true,
+        "ospf": {
+          "area": "0",
+          "keyId": "",
+          "key": ""
+        },
+        "isPublicAddressRateLimited": false
+      },
+      {
+        "IPv6": "",
+        "PublicIP": "",
+        "PublicPort": "",
+        "NatType": "",
+        "useStun": true,
+        "useFixedPublicPort": false,
+        "internetAccess": "",
+        "monitorInternet": true,
+        "linkStatus": "",
+        "gateway": "",
+        "metric": "",
+        "mtu": 1500,
+        "dhcp": "no",
+        "IPv4": "192.168.101.2",
+        "type": "LAN",
+        "MAC": "52:54:00:97:d2:e1",
+        "routing": "OSPF",
+        "IPv6Mask": "",
+        "isAssigned": false,
+        "driver": "virtio_net",
+        "IPv4Mask": "24",
+        "name": "eth1",
+        "devId": "pci:0000:07:00.00",
+        "parentDevId": "",
+        "vlanTag": "",
+        "locked": true,
+        "_id": "69bfbd8c0727a00013523dc5",
+        "pathlabels": [],
+        "deviceType": "dpdk",
+        "configuration": {},
+        "deviceParams": {},
+        "qosPolicy": null,
+        "bandwidthMbps": {
+          "tx": 100,
+          "rx": 100
+        },
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dnsDomains": [],
+        "useDhcpDnsServers": true,
+        "ospf": {
+          "area": "0",
+          "keyId": "",
+          "key": ""
+        },
+        "isPublicAddressRateLimited": false
+      },
+      {
+        "IPv6": "",
+        "PublicIP": "",
+        "PublicPort": "",
+        "NatType": "",
+        "useStun": true,
+        "useFixedPublicPort": false,
+        "internetAccess": "",
+        "monitorInternet": true,
+        "linkStatus": "",
+        "gateway": "",
+        "metric": "",
+        "mtu": 1500,
+        "dhcp": "no",
+        "IPv4": "",
+        "type": "LAN",
+        "MAC": "52:54:00:34:c4:fe",
+        "routing": "OSPF",
+        "IPv6Mask": "",
+        "isAssigned": false,
+        "driver": "virtio_net",
+        "IPv4Mask": "",
+        "name": "eth2",
+        "devId": "pci:0000:08:00.00",
+        "parentDevId": "",
+        "vlanTag": "",
+        "locked": true,
+        "_id": "69bfbd8c0727a00013523dc6",
+        "pathlabels": [],
+        "deviceType": "dpdk",
+        "configuration": {},
+        "deviceParams": {},
+        "qosPolicy": null,
+        "bandwidthMbps": {
+          "tx": 100,
+          "rx": 100
+        },
+        "dnsServers": [
+          "8.8.8.8",
+          "8.8.4.4"
+        ],
+        "dnsDomains": [],
+        "useDhcpDnsServers": true,
+        "ospf": {
+          "area": "0",
+          "keyId": "",
+          "key": ""
+        },
+        "isPublicAddressRateLimited": false
+      }
+    ],
+    "staticroutes": [],
+    "dhcp": [],
+    "deviceSpecificRulesEnabled": true,
+    "firewall": {
+      "rules": []
+    },
+    "deviceStatus": {}
   }
 ]
 ```
-    - "name"はリンクとして、クリックするとdevice詳細画面に遷移するようにしてください。詳細画面で編集できるようにしてください。api/devices/{id}をPUTする動作をしてください。また削除ボタンを詳細画面で表示してください。削除ボタンをクリックすると/devices/{id}をDELETEする動作をしてください。
+
+    - consoleに取得に用いた同等のcurlコマンドを表示することと、戻り値の結果を表示してください。
+    - "name"はリンクとして、クリックするとdevice詳細画面に遷移するようにしてください。
+    - 詳細画面においてOrganization IDやAccount IDはIDだけでなくて名前を表示してください。名前を主として、IDを補足情報として表示してください。
+    - 詳細画面において、ネットワークインタフェースは、インターフェース, タイプ, IPv4 / Mask, パブリックIP, Gateway / MTU, NAT / STUN, Routing, MACアドレスの順で表示してください。インタフェースにはインタフェース名と補足情報としてpci device idを表示しますが、補足情報は改行して表示してください。Gateway / MTUは値の表示も"/"(スラッシュ)で区切ってください。NAT / STUNは値の表示も"/"(スラッシュ)で区切ってください。
+    - 詳細画面で編集できるようにしてください。api/devices/{id}をPUTする動作をしてください。PUTが可能な項目はすべて編集可能にしてください。承認待ちの場合は承認可能にしてください。
+    - 削除ボタンを詳細画面で表示してください。削除ボタンをクリックすると/devices/{id}をDELETEする動作をしてください。
   - Tokens (トークン)
     - api/tokensからGETし取得できる以下の情報を表示してください。表示する際にトークン名には”name”及び"_id"を表示しますが開業して表示してください。"org"はIDで戻るためorganization nameを表示し、改行してorgのIDを表示してください。tokenは初期状態では省略してよいですが、展開ボタンにより全部表示してください。またコピーボタンを具備してください。
       - "_id", "org", "name", "token"

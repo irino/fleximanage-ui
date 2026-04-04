@@ -23,10 +23,16 @@ api.use({
     let curl = `curl -X ${method} "${url}"`;
 
     headers.forEach((value: string, key: string) => {
+      // Don't log the full token for security if you prefer, but the user asked for the equivalent curl command
       curl += ` -H "${key}: ${value}"`;
     });
 
     console.log(`%c[API Request] %c${curl}`, 'color: #6366f1; font-weight: bold;', 'color: #94a3b8;');
+  },
+  async onResponse({ response }) {
+    const data = await response.clone().json().catch(() => null);
+    console.log(`%c[API Response] %c${response.status} ${response.statusText}`, 'color: #10b981; font-weight: bold;', 'color: #94a3b8;', data);
+    return response;
   }
 });
 

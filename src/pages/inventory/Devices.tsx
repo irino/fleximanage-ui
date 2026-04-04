@@ -12,6 +12,7 @@ const Devices: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,10 +33,14 @@ const Devices: React.FC = () => {
         }
     };
 
+    const handleSearch = () => {
+        setSearchValue(searchTerm);
+    };
+
     const filteredDevices = devices.filter(device =>
-        device.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        device.hostname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        device.machineId?.toLowerCase().includes(searchTerm.toLowerCase())
+        device.name?.toLowerCase().includes(searchValue.toLowerCase()) ||
+        device.hostname?.toLowerCase().includes(searchValue.toLowerCase()) ||
+        device.machineId?.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     if (loading) return <div className="members-container" style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>Loading devices...</div>;
@@ -49,22 +54,29 @@ const Devices: React.FC = () => {
                         <HardDrive className="text-primary" size={28} />
                         {t('Devices')}
                     </h1>
-                    <p className="subtitle">{t('Device Description')}</p>
+                    <p className="subtitle">{t('Device Description') || 'Manage and monitor your edge devices.'}</p>
                 </div>
                 <div className="members-actions">
                     <button className="btn-primary" onClick={() => navigate('/inventory/register')}>
                         <Plus size={18} />
                         <span>{t('Create Dummy Device')}</span>
                     </button>
-                    <div className="search-wrapper">
-                        <Search className="search-icon" size={18} />
-                        <input
-                            type="text"
-                            placeholder={t('Search devices...')}
-                            className="search-input"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                    <div className="search-group" style={{ display: 'flex', gap: '0.5rem' }}>
+                        <div className="search-wrapper">
+                            <Search className="search-icon" size={18} />
+                            <input
+                                type="text"
+                                placeholder={t('Search devices...')}
+                                className="search-input"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
+                            />
+                        </div>
+                        <button className="btn-secondary" onClick={handleSearch}>
+                            <Search size={18} />
+                            <span>{t('Search')}</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -74,6 +86,7 @@ const Devices: React.FC = () => {
                     <table className="members-table">
                         <thead>
                             <tr>
+                                <th>{t('Name')}</th>
                                 <th>{t('Hostname')}</th>
                                 <th>{t('Connection Status')}</th>
                                 <th>{t('IP Address')}</th>
@@ -89,12 +102,14 @@ const Devices: React.FC = () => {
                                 return (
                                     <tr key={device._id}>
                                         <td>
+                                            <Link to={`/inventory/devices/${device._id}`} className="entity-link font-bold">
+                                                {device.name}
+                                            </Link>
+                                        </td>
+                                        <td>
                                             <div className="device-info-cell">
                                                 <div className={`status-dot ${device.isConnected ? 'online' : 'offline'}`} />
                                                 <div className="name-box">
-                                                    <Link to={`/inventory/devices/${device._id}`} className="entity-link">
-                                                        {device.name}
-                                                    </Link>
                                                     <span className="sub-text">{device.hostname}</span>
                                                 </div>
                                             </div>

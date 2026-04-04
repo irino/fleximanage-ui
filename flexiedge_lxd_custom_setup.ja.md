@@ -58,12 +58,11 @@ graph TD
 
 ## 6. nuitkaによるflexiAgentのコンパイル
 ```
-sudo apt install pipx python3-zstandard ccache
+sudo apt install pipx python3-dev python3-zstandard ccache patchelf
 sudo pipx ensurepath --global
 sudo pipx install nuitka --global
 sudo pipx inject nuitka --global psutil pyro4 pyaml jwt netaddr sqlitedict pyroute2 cffi ply pycparser selectors2 jaraco.functools portend tempora cryptography asn1crypto idna cheroot pam argcomplete websocket ruamel.yaml backports.functools-lru-cache distro
-nuitka --onefile --standalone --lto=yes  --follow-imports --plugin-enable=pylint-warnings  --include-data-dir=build=build --include-raw-dir=tools/system_checker=tools/system_checker fwagent.py```
-
+nuitka --onefile --standalone --lto=yes  --follow-imports --plugin-enable=pylint-warnings --include-package=ruamel.yaml --include-data-dir=build=build --include-plugin-files=tools/system_checker/fwsystem_checker.py --include-plugin-files=tools/system_checker/fwsystem_checker_common.py --include-plugin-files=tools/common/fw_vpp_startupconf.py --include-plugin-dir=tools/stun fwagent.py
 
 ---
 > [!NOTE]
